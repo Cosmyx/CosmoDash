@@ -37,6 +37,7 @@ export class PrinterStatusComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.subscriptions.add(
       this.socketService.getPrinterStatusSubscribable().subscribe((status: PrinterStatus): void => {
+        console.log(status)
         this.printerStatus = status;
       }),
     );

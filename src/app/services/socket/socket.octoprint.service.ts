@@ -172,6 +172,7 @@ export class OctoPrintSocketService implements SocketService {
 
   private setupSocket(resolve: () => void) {
     this.socket.subscribe(message => {
+      console.log(message)
       if (Object.hasOwnProperty.bind(message)('current')) {
         this.extractPrinterStatus(message as OctoprintSocketCurrent);
         this.extractJobStatus(message as OctoprintSocketCurrent);
@@ -235,7 +236,8 @@ export class OctoPrintSocketService implements SocketService {
     const fanSpeedLogs = message?.current?.logs?.filter(l => l.startsWith("Send: M106 S"));
     if (fanSpeedLogs && fanSpeedLogs.length > 0) {
       const fanSpeedLog = fanSpeedLogs[0];
-      const fanSpeed = parseInt(fanSpeedLog.substring("Send: M106 S".length), 10) / 255 * 100;
+      console.log("got fanspeed log: " + fanSpeedLogs)
+      const fanSpeed = Math.round(parseInt(fanSpeedLog.substring("Send: M106 S".length), 10) / 255 * 100);
       this.printerStatus.fanSpeed = fanSpeed;
     }
     this.printerStatusSubject.next(this.printerStatus);

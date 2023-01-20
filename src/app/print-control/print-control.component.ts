@@ -172,8 +172,9 @@ export class PrintControlComponent implements OnInit, OnDestroy {
   private loadData(): void {
     this.socketService
       .getPrinterStatusSubscribable()
-      .pipe(last())
+      .pipe(take(1))
       .subscribe((status: PrinterStatus): void => {
+        console.log(status)
         this.temperatureHotend = status.tool0.set;
         this.temperatureHeatbed = status.bed.set;
         this.fanSpeed = status.fanSpeed;

@@ -57,6 +57,7 @@ export class PrinterOctoprintService implements PrinterService {
         ),
       )
       .subscribe();
+      console.log("sent " + gCode)
   }
 
   public jog(x: number, y: number, z: number): void {
@@ -201,6 +202,7 @@ export class PrinterOctoprintService implements PrinterService {
   }
 
   public setFanSpeed(percentage: number): void {
+    console.log("sending fanspeed " + percentage)
     this.executeGCode('M106 S' + Math.round((percentage / 100) * 255));
   }
 
