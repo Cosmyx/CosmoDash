@@ -13,7 +13,7 @@ let window;
 
 function createWindow() {
   const _store = new Store();
-  const properties = electron.configure(process.argv.slice(1))
+  const properties = electron.configure(process.argv.slice(1));
 
   window = new BrowserWindow(properties.window);
 
@@ -32,5 +32,6 @@ function createWindow() {
 app.commandLine.appendSwitch('touch-events', 'enabled');
 
 app.on('ready', createWindow);
-app.on('activate', () => window ? null : createWindow())
+app.on('activate', () => (window ? null : createWindow()));
 app.on('window-all-closed', () => app.quit());
+console.debug('reading config from ' + app.getPath('userData'));

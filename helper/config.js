@@ -14,7 +14,7 @@ function fetchConfig() {
     if (!store) {
       store = new Store();
     }
-    config = store.get('config')
+    config = store.get('config');
   } catch (e) {
     console.error(e.message);
   }
@@ -22,7 +22,7 @@ function fetchConfig() {
 }
 
 function readConfig(window) {
-  const config = fetchConfig()
+  const config = fetchConfig();
   if (config) {
     window.webContents.send('configRead', config);
   } else {
@@ -37,7 +37,7 @@ function saveConfig(window, config) {
       window.webContents.send('configSaved', config);
     } catch (e) {
       window.webContents.send('configError', "Can't save config file.");
-      console.error(e.message)
+      console.error(e.message);
     }
   } else {
     window.webContents.send('configSaveFail', getConfigErrors());
