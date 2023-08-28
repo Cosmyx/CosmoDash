@@ -72,7 +72,7 @@ export class ControlComponent implements OnInit {
     this.printerService.jog(
       axis === 'x' ? distance : 0,
       axis === 'y' ? distance : 0,
-      axis === 'z' ? distance : 0
+      axis === 'z' ? distance : 0,
     );
   }
 
@@ -83,7 +83,7 @@ export class ControlComponent implements OnInit {
   private changeValue(item: string, value: number): void {
     this[item] = Math.round((this[item] + value) * 100) / 100;
     if (this[item] <= -999) {
-      this.printerService.setZOffset(0)
+      this.printerService.setZOffset(0);
     }
   }
 
