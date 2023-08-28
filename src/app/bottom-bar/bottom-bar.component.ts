@@ -94,7 +94,7 @@ export class BottomBarComponent implements OnDestroy {
 
   private changeValue(item: string, value: number): void {
     this[item] = Math.round((this[item] + value) * 100) / 100;
-    if (this[item] <= -999) {
+    if (this[item] <= -200) {
       this.enclosureTemperatureTarget = this.enclosureTemperature;
     }
   }
