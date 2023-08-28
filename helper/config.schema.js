@@ -50,6 +50,11 @@ const configSchema = {
           type: 'string',
           pattern: '^(.*)$',
         },
+        enclosureTemperatureGCode: {
+          $id: '#/properties/printer/properties/enclosureTemperatureGCode',
+          type: 'string',
+          pattern: '^(.*)$',
+        },
         saveSettingsGCode: {
           $id: '#/properties/printer/properties/saveSettingsGCode',
           type: 'string',

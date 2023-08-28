@@ -289,6 +289,10 @@ export class ConfigService {
     return this.config.printer.zBabystepGCode;
   }
 
+  public getEnclosureTemperatureGCode(): string {
+    return this.config.printer.enclosureTemperatureGCode;
+  }
+
   public getSaveSettingsGCode(): string {
     return this.config.printer.saveSettingsGCode;
   }
