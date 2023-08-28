@@ -79,6 +79,11 @@ export class OctoPrintSocketService implements SocketService {
         set: 0,
         unit: '°C',
       },
+      chamber: {
+        current: 0,
+        set: 0,
+        unit: '°C',
+      },
       fanSpeed: 0,
     } as PrinterStatus;
   }

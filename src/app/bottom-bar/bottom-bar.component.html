@@ -8,6 +8,9 @@
     >
       <img src="assets/thermometer.svg" class="bottom-bar__enclosure-temperature-icon" />
       {{ enclosureTemperature }}{{ enclosureTemperatureUnit }}
+      <span *ngIf="enclosureTemperatureTarget">
+        / {{ enclosureTemperatureTarget }}{{ enclosureTemperatureUnit }}
+      </span>
     </td>
     <td class="bottom-bar__current-status">
       {{ getStringStatus(printerStatus) }}

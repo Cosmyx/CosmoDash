@@ -20,6 +20,7 @@ export class BottomBarComponent implements OnDestroy {
   public printerStatus: PrinterState;
   public enclosureTemperature: number;
   public enclosureTemperatureTarget: number;
+  public enclosureTemperatureUITarget: number;
   public enclosureTemperatureUnit: string;
   public enclosureTemperatureControl: boolean = false;
 
@@ -59,6 +60,7 @@ export class BottomBarComponent implements OnDestroy {
               unit: printerStatus.chamber.unit,
             };
             this.enclosureTemperature = chamberReading.temperature;
+            this.enclosureTemperatureTarget = printerStatus.chamber.set;
             this.enclosureTemperatureUnit = chamberReading.unit;
           }
         }),
@@ -92,15 +94,21 @@ export class BottomBarComponent implements OnDestroy {
     return this.enclosureTemperature.toFixed(0);
   }
 
+  public getEnclosureTemperatureUITarget(): string {
+    return this.enclosureTemperatureUITarget.toFixed(0);
+  }
+
   private changeValue(item: string, value: number): void {
     this[item] = Math.round((this[item] + value) * 100) / 100;
     if (this[item] <= -200) {
-      this.enclosureTemperatureTarget = this.enclosureTemperature;
+      this.enclosureTemperatureUITarget = 0;
     }
   }
 
   public showQuickControl(): void {
-    this.enclosureTemperatureTarget = this.enclosureTemperature;
+    this.enclosureTemperatureUITarget = this.enclosureTemperatureTarget
+      ? this.enclosureTemperatureTarget
+      : this.enclosureTemperature;
     this.enclosureTemperatureControl = true;
     setTimeout((): void => {
       const controlViewDOM = document.getElementById('quickControl');
@@ -119,14 +127,14 @@ export class BottomBarComponent implements OnDestroy {
   public quickControlSettings() {
     return {
       image: 'heat.svg',
-      target: this.enclosureTemperatureTarget,
+      target: this.enclosureTemperatureUITarget,
       unit: '°C',
       smallStep: 1,
       bigStep: 10,
       reset: -999,
-      changeValue: (value: number) => this.changeValue('enclosureTemperatureTarget', Number(value)),
+      changeValue: (value: number) => this.changeValue('enclosureTemperatureUITarget', Number(value)),
       setValue: () => {
-        this.printerService.executeGCode(`${this.configService.getEnclosureTemperatureGCode()}${this.getEnclosureTemperature()};`);
+        this.printerService.executeGCode(`${this.configService.getEnclosureTemperatureGCode()}${this.getEnclosureTemperatureUITarget()};`);
         this.hideQuickControl();
       },
     }
