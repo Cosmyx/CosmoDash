@@ -1,12 +1,23 @@
 <table class="bottom-bar">
   <tr>
     <td class="bottom-bar__printer-name">{{ getPrinterName() }}</td>
-    <td class="bottom-bar__enclosure-temperature" *ngIf="enclosureTemperature">
+    <td
+      class="bottom-bar__enclosure-temperature"
+      *ngIf="enclosureTemperature"
+      (click)="showQuickControl()"
+    >
       <img src="assets/thermometer.svg" class="bottom-bar__enclosure-temperature-icon" />
-      {{ enclosureTemperature.temperature }}{{ enclosureTemperature.unit }}
+      {{ enclosureTemperature }}{{ enclosureTemperatureUnit }}
     </td>
     <td class="bottom-bar__current-status">
       {{ getStringStatus(printerStatus) }}
     </td>
   </tr>
 </table>
+
+<app-quick-control
+  *ngIf="enclosureTemperatureControl"
+  id="quickControl"
+  [settings]="quickControlSettings()"
+  [hide]="hideQuickControl.bind(this)"
+></app-quick-control>
