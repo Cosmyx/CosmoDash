@@ -16,7 +16,10 @@
     </tr>
   </table>
 
-  <div class="quick-control__controller">
+  <div
+    class="quick-control__controller"
+    *ngFor="let tool of ['tool0', 'tool1']"
+  >
 
     <div class="quick-control__controller-row">
       <div

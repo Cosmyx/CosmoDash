@@ -79,6 +79,11 @@ export class OctoPrintSocketService implements SocketService {
         set: 0,
         unit: '°C',
       },
+      tool1: {
+        current: 0,
+        set: 0,
+        unit: '°C',
+      },
       chamber: {
         current: 0,
         set: 0,
@@ -220,6 +225,7 @@ export class OctoPrintSocketService implements SocketService {
   //==== Printer Status ====//
 
   public extractPrinterStatus(message: OctoprintSocketCurrent): void {
+    // console.log(message);
     if (message.current.temps[0]) {
       this.printerStatus.bed = {
         current: Math.round(message?.current?.temps[0]?.bed?.actual),
@@ -228,6 +234,11 @@ export class OctoPrintSocketService implements SocketService {
       };
       this.printerStatus.tool0 = {
         current: Math.round(message?.current?.temps[0]?.tool0?.actual),
+        set: Math.round(message?.current?.temps[0]?.tool0?.target),
+        unit: '°C',
+      };
+      this.printerStatus.tool1 = {
+        current: Math.round(message?.current?.temps[0]?.tool1?.actual),
         set: Math.round(message?.current?.temps[0]?.tool0?.target),
         unit: '°C',
       };
