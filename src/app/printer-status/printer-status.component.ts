@@ -93,6 +93,7 @@ export class PrinterStatusComponent implements OnInit, OnDestroy {
         image: 'nozzle.svg',
         target: this.hotendTarget,
         unit: '°C',
+        tools: ['tool0', 'tool1'],
         changeValue: (value: number) => this.changeValue(
           'hotendTarget',
           value,
@@ -121,6 +122,7 @@ export class PrinterStatusComponent implements OnInit, OnDestroy {
         image: 'fan.svg',
         target: this.fanTarget,
         unit: '%',
+        tools: ['tool0', 'tool1'],
         changeValue: (value: number) => this.changeValue(
           'fanTarget',
           value,

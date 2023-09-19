@@ -16,73 +16,74 @@
     </tr>
   </table>
 
-  <div
-    class="quick-control__controller"
-    *ngFor="let tool of ['tool0', 'tool1']"
-  >
-
-    <div class="quick-control__controller-row">
-      <div
-        class="quick-control__controller-change"
-        (click)="settings.changeValue(+settings.smallStep)"
-        matRipple
-        [matRippleUnbounded]="false"
-      >
-        +{{ this.settings.smallStep }}
-      </div>
-      <div
-        class="quick-control__controller-change"
-        (click)="settings.changeValue(+settings.bigStep)"
-        matRipple
-        [matRippleUnbounded]="false"
-      >
-        +{{ this.settings.bigStep }}
-      </div>
-    </div>
-
+  <div class="quick-control__controller-row">
     <div
-      class="quick-control__controller-value"
-      colspan="2"
-      (click)="settings.changeValue(settings.reset - 1)"
-      matRipple
-      [matRippleUnbounded]="false"
+      class="quick-control__controller"
+      *ngFor="let tool of (settings.tools || ['tool0'])"
     >
-      {{ Number(this.settings.target) < Number(this.settings.reset) ? '...' : this.settings.target }}
-      <span class="quick-control__controller-value-unit">
-        {{ this.settings.unit }}
-      </span>
-    </div>
 
-    <div class="quick-control__controller-row">
-      <div
-        class="quick-control__controller-change"
-        (click)="settings.changeValue(-settings.smallStep)"
-        matRipple
-        [matRippleUnbounded]="false"
-      >
-        -{{ this.settings.smallStep }}
+      <div class="quick-control__controller-row">
+        <div
+          class="quick-control__controller-change"
+          (click)="settings.changeValue(+settings.smallStep)"
+          matRipple
+          [matRippleUnbounded]="false"
+        >
+          +{{ this.settings.smallStep }}
+        </div>
+        <div
+          class="quick-control__controller-change"
+          (click)="settings.changeValue(+settings.bigStep)"
+          matRipple
+          [matRippleUnbounded]="false"
+        >
+          +{{ this.settings.bigStep }}
+        </div>
       </div>
-      <div
-        class="quick-control__controller-change"
-        (click)="settings.changeValue(-settings.bigStep)"
-        matRipple
-        [matRippleUnbounded]="false"
-      >
-        -{{ this.settings.bigStep }}
-      </div>
-    </div>
 
-    <div class="quick-control__controller-row">
       <div
-        class="quick-control__controller-set"
+        class="quick-control__controller-value"
         colspan="2"
-        (click)="settings.setValue()"
+        (click)="settings.changeValue(settings.reset - 1)"
         matRipple
         [matRippleUnbounded]="false"
       >
-        <span class="quick-control__controller-set-span" i18n="@@quick-set">set</span>
+        {{ Number(this.settings.target) < Number(this.settings.reset) ? '...' : this.settings.target }}
+        <span class="quick-control__controller-value-unit">
+          {{ this.settings.unit }}
+        </span>
+      </div>
+
+      <div class="quick-control__controller-row">
+        <div
+          class="quick-control__controller-change"
+          (click)="settings.changeValue(-settings.smallStep)"
+          matRipple
+          [matRippleUnbounded]="false"
+        >
+          -{{ this.settings.smallStep }}
+        </div>
+        <div
+          class="quick-control__controller-change"
+          (click)="settings.changeValue(-settings.bigStep)"
+          matRipple
+          [matRippleUnbounded]="false"
+        >
+          -{{ this.settings.bigStep }}
+        </div>
+      </div>
+
+      <div class="quick-control__controller-row">
+        <div
+          class="quick-control__controller-set"
+          colspan="2"
+          (click)="settings.setValue()"
+          matRipple
+          [matRippleUnbounded]="false"
+        >
+          <span class="quick-control__controller-set-span" i18n="@@quick-set">set</span>
+        </div>
       </div>
     </div>
-
   </div>
 </div>
