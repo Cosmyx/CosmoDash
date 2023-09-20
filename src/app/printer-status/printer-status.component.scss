@@ -1,7 +1,7 @@
 .printer-status {
   width: 100%;
   margin-top: 3vh;
-  height: 23vh;
+  height: 30vh;
   display: block;
   table-layout: fixed;
   overflow: visible;
@@ -26,6 +26,15 @@
       width: 29vw;
       padding-left: 1vw;
       padding-right: 7.5vw;
+      .printer-status__actual-value {
+        font-size: 5vw;
+      }
+      .printer-status__set-value {
+        font-size: 3.3vw;
+        .unit {
+          font-size: 3.3vw;
+        }
+      }
     }
 
     &-2 {
@@ -55,7 +64,7 @@
   &__actual-value {
     font-size: 6vw;
     font-weight: 500;
-    display: inline-block;
+    // display: inline-block;
   }
 
   &__set-value {

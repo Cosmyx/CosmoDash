@@ -73,74 +73,74 @@
           </div>
           <span class="control-middle-jog__heading">X / Y</span>
         </div>
-
-        <div class="control-middle-jog vertical-jog">
-          <div class="control-middle-jog-vertical">
-            <div class="jog-icon-wrapper-vertical">
-              <fa-icon
-                [icon]="['fas', 'angle-up']"
-                class="jog-icon"
-                (click)="moveAxis('z', '+')"
-                matRipple
-                [matRippleUnbounded]="true"
-                [matRippleCentered]="true"
-              ></fa-icon>
+        <div class="control-middle-jog-wrapper">
+          <div class="control-middle-jog vertical-jog">
+            <div class="control-middle-jog-vertical">
+              <div class="jog-icon-wrapper-vertical">
+                <fa-icon
+                  [icon]="['fas', 'angle-up']"
+                  class="jog-icon"
+                  (click)="moveAxis('z', '+')"
+                  matRipple
+                  [matRippleUnbounded]="true"
+                  [matRippleCentered]="true"
+                ></fa-icon>
+              </div>
+              <div class="jog-icon-wrapper-vertical">
+                <fa-icon
+                  [icon]="['fas', 'angle-down']"
+                  class="jog-icon"
+                  (click)="moveAxis('z', '-')"
+                  matRipple
+                  [matRippleUnbounded]="true"
+                  [matRippleCentered]="true"
+                ></fa-icon>
+              </div>
             </div>
-            <div class="jog-icon-wrapper-vertical">
-              <fa-icon
-                [icon]="['fas', 'angle-down']"
-                class="jog-icon"
-                (click)="moveAxis('z', '-')"
-                matRipple
-                [matRippleUnbounded]="true"
-                [matRippleCentered]="true"
-              ></fa-icon>
-            </div>
+            <span class="control-middle-jog__heading">Z</span>
           </div>
-          <span class="control-middle-jog__heading">Z</span>
-        </div>
 
-        <div
-          class="control-middle-jog vertical-jog"
-          *ngFor="let toolID of [0, 1]"
-        >
-          <div class="control-middle-jog-vertical">
-            <div class="jog-icon-wrapper-vertical">
-              <fa-icon
-                [icon]="['fas', 'angle-up']"
-                class="jog-icon"
-                (click)="extrude('-')"
-                matRipple
-                [matRippleUnbounded]="true"
-                [matRippleCentered]="true"
-              ></fa-icon>
+          <div
+            class="control-middle-jog vertical-jog"
+            *ngFor="let toolID of [0, 1]"
+          >
+            <div class="control-middle-jog-vertical">
+              <div class="jog-icon-wrapper-vertical">
+                <fa-icon
+                  [icon]="['fas', 'angle-up']"
+                  class="jog-icon"
+                  (click)="extrude('-')"
+                  matRipple
+                  [matRippleUnbounded]="true"
+                  [matRippleCentered]="true"
+                ></fa-icon>
+              </div>
+              <div class="jog-icon-wrapper-vertical-temp">
+                <span>
+                  {{ printerStatus['tool' + toolID].current }}<span>°C</span>
+                </span>
+                <!--
+                <span *ngIf="printerStatus.tool0.set">
+                  /{{ printerStatus.tool0.set }}<span>°C</span>
+                </span>
+                -->
+              </div>
+              <div class="jog-icon-wrapper-vertical">
+                <fa-icon
+                  [icon]="['fas', 'angle-down']"
+                  class="jog-icon"
+                  (click)="extrude('+')"
+                  matRipple
+                  [matRippleUnbounded]="true"
+                  [matRippleCentered]="true"
+                ></fa-icon>
+              </div>
             </div>
-            <div class="jog-icon-wrapper-vertical-temp">
-              <span>
-                {{ printerStatus['tool' + toolID].current }}<span>°C</span>
-              </span>
-              <!--
-              <span *ngIf="printerStatus.tool0.set">
-                /{{ printerStatus.tool0.set }}<span>°C</span>
-              </span>
-              -->
-            </div>
-            <div class="jog-icon-wrapper-vertical">
-              <fa-icon
-                [icon]="['fas', 'angle-down']"
-                class="jog-icon"
-                (click)="extrude('+')"
-                matRipple
-                [matRippleUnbounded]="true"
-                [matRippleCentered]="true"
-              ></fa-icon>
-            </div>
+            <span class="control-middle-jog__heading">
+              E{{ toolID }}
+            </span>
           </div>
-          <span class="control-middle-jog__heading">
-            E{{ toolID }}
-          </span>
         </div>
-
       </div>
     </div>
 

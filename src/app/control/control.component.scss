@@ -67,12 +67,23 @@
 
       .square-jog {
         width: 30vw;
-        margin: 0 3vw;
+        // margin: 0 3vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .vertical-jog {
         min-width: 12vw;
         margin: 0 3vw;
+      }
+      .control-middle-jog-wrapper {
+        display: flex;
+        flex-direction: row;
+        .vertical-jog {
+          min-width: 12vw;
+          margin: 0;
+        }
       }
     }
 
@@ -90,6 +101,9 @@
 
       &-square {
         max-width: 45vh;
+        max-height: 45vh;
+        height: 28vw;
+        width: 28vw;
         position: relative;
 
         &:after {
