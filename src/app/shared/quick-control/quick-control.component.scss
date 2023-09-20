@@ -9,7 +9,9 @@
   transition: opacity 0.4s ease-in-out;
   z-index: 60;
   opacity: 1;
-
+  .target-info {
+    opacity: 0.5;
+  }
   &__controller {
     width: 35vw;
     margin: 0 auto;

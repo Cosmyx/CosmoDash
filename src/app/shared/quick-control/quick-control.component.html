@@ -11,6 +11,7 @@
           [src]="'assets/' + settings.image"
           class="top-bar__center-icon"
         />
+        <span *ngIf="settings.type === 'hotendTarget'" class="target-info">- E{{settings.targetInfo}}</span>
       </td>
       <td class="top-bar__back"></td>
     </tr>
