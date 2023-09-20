@@ -26,14 +26,22 @@
       width: 29vw;
       padding-left: 1vw;
       padding-right: 7.5vw;
-      .printer-status__actual-value {
-        font-size: 5vw;
-      }
-      .printer-status__set-value {
-        font-size: 3.3vw;
-        .unit {
-          font-size: 3.3vw;
+      &.head-count-2 {
+        .printer-status__actual-value {
+          font-size: 5vw;
         }
+        .printer-status__set-value {
+          font-size: 3.3vw;
+          .unit {
+            font-size: 3.3vw;
+          }
+        }
+        img {
+          width: 8.2vw;
+        }
+      }
+      > div:nth-child(2) {
+        margin-top: 8px;
       }
     }
 

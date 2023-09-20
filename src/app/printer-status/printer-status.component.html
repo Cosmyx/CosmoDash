@@ -2,13 +2,12 @@
   <tr>
 
     <td
-      class="printer-status__value printer-status__value-1"
+      class="printer-status__value printer-status__value-1 head-count-{{tools.length}}"
       [ngClass]="{ 'printer-status__no-set-value': printerStatus.tool0.set === 0 }"
-      (click)="showQuickControlHotend()"
       matRipple
       [matRippleUnbounded]="false"
     >
-      <div *ngFor="let tool of ['tool0', 'tool1']">
+      <div *ngFor="let tool of tools" (click)="showQuickControlHotend(tool)">
         <img src="assets/nozzle.svg" />
         <span class="printer-status__actual-value">
           {{ printerStatus[tool].current || 0 }}<span class="printer-status__unit">°C</span>
