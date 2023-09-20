@@ -24,7 +24,7 @@ export interface FeedrateCommand {
 export interface TemperatureHotendCommand {
   command: string;
   targets: {
-    tool0: number;
+    tool0?: number;
     tool1?: number;
   };
 }

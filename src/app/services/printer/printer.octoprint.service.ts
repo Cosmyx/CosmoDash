@@ -93,11 +93,11 @@ export class PrinterOctoprintService implements PrinterService {
       .subscribe();
   }
 
-  public setTemperatureHotend(temperature: number): void {
+  public setTemperatureHotend(temperature: number, targetInfo: string = 'tool0'): void {
     const temperatureHotendCommand: TemperatureHotendCommand = {
       command: 'target',
       targets: {
-        tool0: temperature,
+        [targetInfo]: temperature,
       },
     };
     this.http
