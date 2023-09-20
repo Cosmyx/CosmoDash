@@ -28,16 +28,16 @@
       padding-right: 7.5vw;
       &.head-count-2 {
         .printer-status__actual-value {
-          font-size: 5vw;
+          font-size: 6vh;
         }
         .printer-status__set-value {
-          font-size: 3.3vw;
+          font-size: 4vh;
           .unit {
-            font-size: 3.3vw;
+            font-size: 4vh;
           }
         }
         img {
-          width: 8.2vw;
+          height: 10vh;
         }
       }
       > div:nth-child(2) {

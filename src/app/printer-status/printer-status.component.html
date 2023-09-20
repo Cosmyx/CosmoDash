@@ -7,13 +7,13 @@
       matRipple
       [matRippleUnbounded]="false"
     >
-      <div *ngFor="let tool of tools" (click)="showQuickControlHotend(tool)">
+      <div *ngFor="let toolID of tools" (click)="showQuickControlHotend(toolID)">
         <img src="assets/nozzle.svg" />
         <span class="printer-status__actual-value">
-          {{ printerStatus[tool].current || 0 }}<span class="printer-status__unit">°C</span>
+          {{ printerStatus['tool' + toolID].current || 0 }}<span class="printer-status__unit">°C</span>
         </span>
-        <span class="printer-status__set-value" *ngIf="printerStatus[tool].set">
-          /{{ printerStatus[tool].set }}<span class="unit">°C</span>
+        <span class="printer-status__set-value" *ngIf="printerStatus['tool' + toolID].set">
+          /{{ printerStatus['tool' + toolID].set }}<span class="unit">°C</span>
         </span>
       </div>
     </td>

@@ -42,9 +42,9 @@ export class PrinterStatusComponent implements OnInit, OnDestroy {
         this.printerStatus = status;
         const tools: string[] = [];
         for (let i = 0; status[`tool${i}`]; i++) {
-          tools.push(`tool${i}`)
+          tools.push(`${i}`);
         }
-        this.tools = tools
+        this.tools = tools;
       }),
     );
   }
@@ -68,10 +68,11 @@ export class PrinterStatusComponent implements OnInit, OnDestroy {
     }, 500);
   }
 
-  public showQuickControlHotend(tool: string): void {
+  public showQuickControlHotend(toolID: string): void {
     this.view = QuickControlView.HOTEND;
-    this.hotendTarget = this.printerStatus[tool].set;
-    this.targetInfo = tool;
+    this.hotendTarget = this.printerStatus[`tool${toolID}`].set;
+    this.targetInfo = toolID;
+    console.log('---this.targetInfo', this.targetInfo);
     this.showQuickControl();
   }
 
@@ -102,6 +103,7 @@ export class PrinterStatusComponent implements OnInit, OnDestroy {
         image: 'nozzle.svg',
         target: this.hotendTarget,
         unit: '°C',
+        type: 'hotendTarget',
         targetInfo: this.targetInfo,
         changeValue: (value: number) => this.changeValue(
           'hotendTarget',
