@@ -7,11 +7,13 @@
         <ng-container i18n="@@quick-back">back</ng-container>
       </td>
       <td class="top-bar__center">
-        <img
-          [src]="'assets/' + settings.image"
-          class="top-bar__center-icon"
-        />
-        <span *ngIf="settings.type === 'hotendTarget'" class="target-info">- E{{settings.targetInfo}}</span>
+        <div class="top-icon-container">
+          <img
+            [src]="'assets/' + settings.image"
+            class="top-bar__center-icon"
+          />
+          <span *ngIf="settings.type === 'hotendTarget'" class="target-info">{{settings.targetInfo}}</span>
+        </div>
       </td>
       <td class="top-bar__back"></td>
     </tr>

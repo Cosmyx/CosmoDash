@@ -3,19 +3,24 @@
     <div
       class="printer-status__value printer-status__value-1 head-count-{{tools.length}}"
       [ngClass]="{ 'printer-status__no-set-value': printerStatus.tool0.set === 0 }"
-      matRipple
-      [matRippleUnbounded]="false"
     >
-      <div *ngFor="let toolID of tools" (click)="showQuickControlHotend(toolID)">
-        <img src="assets/nozzle.svg" />
+      <div
+        *ngFor="let toolID of tools"
+        (click)="showQuickControlHotend(toolID)"
+        matRipple
+        [matRippleUnbounded]="false"
+      >
+        <div class="image-container">
+          <img src="assets/nozzle.svg" />
+          <span *ngIf="tools.length > 1" class="toolId">{{toolID}}</span>
+        </div>
         <div class="temperature-container">
           <span class="printer-status__actual-value">
             {{ printerStatus['tool' + toolID].current || 0 }}<span class="printer-status__unit">°C</span>
           </span>
           <span class="printer-status__set-value" *ngIf="printerStatus['tool' + toolID].set">
-            /{{ printerStatus['tool' + toolID].set }}<span class="printer-status__unit">°C</span>
+            &nbsp;/ {{ printerStatus['tool' + toolID].set }}<span class="printer-status__unit">°C</span>
           </span>
-          <span *ngIf="tools.length > 1" class="toolId">(E{{toolID}})</span>
         </div>
       </div>
     </div>
