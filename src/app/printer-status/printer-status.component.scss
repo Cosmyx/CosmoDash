@@ -5,28 +5,55 @@
   display: block;
   table-layout: fixed;
   overflow: visible;
-
-  & tr {
+  &-wrapper {
     vertical-align: middle;
+    display: flex;
   }
+
 
   &__value {
     text-align: right;
     height: 23vh;
     vertical-align: middle;
 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .image-container {
+      display: flex;
+      align-items: center;
+
+    }
+    .temperature-container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      overflow: visible;
+    }
     & img {
-      width: 10vw;
-      float: left;
-      padding-top: 1.7vh;
-      padding-right: 2vw;
+      // width: 10vw;
+      // float: left;
+      // padding-top: 1.7vh;
+      // padding-right: 2vw;
     }
 
     &-1 {
       width: 29vw;
       padding-left: 1vw;
       padding-right: 7.5vw;
+      flex-direction: column;
+      align-items: normal;
+      & img {
+        width: 9.6vw;
+      }
+      .toolId {
+        opacity: 0.5;
+        font-size: 5vh;
+      }
       &.head-count-2 {
+        .temperature-container {
+          flex-direction: row;
+        }
         .printer-status__actual-value {
           font-size: 6vh;
         }
@@ -39,6 +66,12 @@
         img {
           height: 10vh;
         }
+      }
+      > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1 1 auto;
       }
       > div:nth-child(2) {
         margin-top: 8px;
@@ -70,7 +103,7 @@
   }
 
   &__actual-value {
-    font-size: 6vw;
+    font-size: 4.5vw;
     font-weight: 500;
     // display: inline-block;
   }
@@ -84,11 +117,11 @@
     overflow: visible;
 
     & span {
-      margin-bottom: -4vh;
+      // margin-bottom: -4vh;
     }
 
     & img {
-      margin-top: -4vh;
+      // margin-top: -4vh;
     }
   }
 }
