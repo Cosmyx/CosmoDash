@@ -72,7 +72,6 @@ export class PrinterStatusComponent implements OnInit, OnDestroy {
     this.view = QuickControlView.HOTEND;
     this.hotendTarget = this.printerStatus[`tool${toolID}`].set;
     this.targetInfo = toolID;
-    console.log('---this.targetInfo', this.targetInfo);
     this.showQuickControl();
   }
 
@@ -105,6 +104,7 @@ export class PrinterStatusComponent implements OnInit, OnDestroy {
         unit: '°C',
         type: 'hotendTarget',
         targetInfo: this.targetInfo,
+        showTargetInfo: this.tools.length > 1,
         changeValue: (value: number) => this.changeValue(
           'hotendTarget',
           value,

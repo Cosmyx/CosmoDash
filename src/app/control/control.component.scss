@@ -65,10 +65,14 @@
     &-jogs {
       display: flex;
       justify-content: space-evenly;
-
+      width: 100%;
+      .control-middle-jog {
+        flex: 0 1 auto;
+      }
       .square-jog {
         width: 30vw;
         // margin: 0 3vw;
+        flex: 0 1 45vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -76,11 +80,13 @@
 
       .vertical-jog {
         min-width: 12vw;
-        margin: 0 3vw;
+        // margin: 0 3vw;
       }
       .control-middle-jog-wrapper {
+        flex: 1 1 auto;
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         .vertical-jog {
           min-width: 12vw;
           margin: 0;
