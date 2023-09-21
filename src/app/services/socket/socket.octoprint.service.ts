@@ -243,6 +243,8 @@ export class OctoPrintSocketService implements SocketService {
           set: Math.round(message?.current?.temps[0]?.tool1?.target),
           unit: '°C',
         };
+      } else {
+        this.printerStatus.tool1 = null;
       }
       this.printerStatus.chamber = {
         current: Math.round(message?.current?.temps[0]?.chamber?.actual),
