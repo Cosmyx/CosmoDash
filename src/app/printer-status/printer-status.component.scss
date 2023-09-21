@@ -46,10 +46,7 @@
       & img {
         width: 9.6vw;
       }
-      .toolId {
-        opacity: 0.5;
-        font-size: 5vh;
-      }
+
       &.head-count-2 {
         .temperature-container {
           flex-direction: row;
@@ -58,13 +55,29 @@
           font-size: 6vh;
         }
         .printer-status__set-value {
-          font-size: 4vh;
+          font-size: 6vh;
           .unit {
+            font-size: 6vh;
+          }
+        }
+        .image-container {
+          overflow: visible;
+          position: relative;
+          margin-right: 2vw;
+          .toolId {
+            position: absolute;
+            top: -6px;
+            right: -3px;
+            color:#C23616;
+            font-weight: bold;
             font-size: 4vh;
           }
         }
         img {
           height: 10vh;
+          width: unset !important;
+          padding-left: 3vw;
+          padding-right: 0px;
         }
       }
       > div {
