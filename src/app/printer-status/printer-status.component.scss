@@ -1,31 +1,94 @@
 .printer-status {
   width: 100%;
   margin-top: 3vh;
-  height: 23vh;
+  height: 30vh;
   display: block;
   table-layout: fixed;
   overflow: visible;
-
-  & tr {
+  &-wrapper {
     vertical-align: middle;
+    display: flex;
   }
+
 
   &__value {
     text-align: right;
     height: 23vh;
     vertical-align: middle;
 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .image-container {
+      display: flex;
+      align-items: center;
+
+    }
+    .temperature-container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      overflow: visible;
+    }
     & img {
-      width: 10vw;
-      float: left;
-      padding-top: 1.7vh;
-      padding-right: 2vw;
+      // width: 10vw;
+      // float: left;
+      // padding-top: 1.7vh;
+      // padding-right: 2vw;
     }
 
     &-1 {
       width: 29vw;
       padding-left: 1vw;
       padding-right: 7.5vw;
+      flex-direction: column;
+      align-items: normal;
+      & img {
+        width: 9.6vw;
+      }
+
+      &.head-count-2 {
+        .temperature-container {
+          flex-direction: row;
+        }
+        .printer-status__actual-value {
+          font-size: 6vh;
+        }
+        .printer-status__set-value {
+          font-size: 6vh;
+          .unit {
+            font-size: 6vh;
+          }
+        }
+        .image-container {
+          overflow: visible;
+          position: relative;
+          margin-right: 2vw;
+          .toolId {
+            position: absolute;
+            top: -6px;
+            right: -3px;
+            color:#C23616;
+            font-weight: bold;
+            font-size: 4vh;
+          }
+        }
+        img {
+          height: 10vh;
+          width: unset !important;
+          padding-left: 3vw;
+          padding-right: 0px;
+        }
+      }
+      > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1 1 auto;
+      }
+      > div:nth-child(2) {
+        margin-top: 8px;
+      }
     }
 
     &-2 {
@@ -53,9 +116,9 @@
   }
 
   &__actual-value {
-    font-size: 6vw;
+    font-size: 4.5vw;
     font-weight: 500;
-    display: inline-block;
+    // display: inline-block;
   }
 
   &__set-value {
@@ -67,11 +130,11 @@
     overflow: visible;
 
     & span {
-      margin-bottom: -4vh;
+      // margin-bottom: -4vh;
     }
 
     & img {
-      margin-top: -4vh;
+      // margin-top: -4vh;
     }
   }
 }

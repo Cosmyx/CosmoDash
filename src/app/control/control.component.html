@@ -73,7 +73,6 @@
           </div>
           <span class="control-middle-jog__heading">X / Y</span>
         </div>
-
         <div class="control-middle-jog vertical-jog">
           <div class="control-middle-jog-vertical">
             <div class="jog-icon-wrapper-vertical">
@@ -100,7 +99,10 @@
           <span class="control-middle-jog__heading">Z</span>
         </div>
 
-        <div class="control-middle-jog vertical-jog" *ngIf="showExtruder">
+        <div
+          class="control-middle-jog vertical-jog"
+          *ngFor="let toolID of tools"
+        >
           <div class="control-middle-jog-vertical">
             <div class="jog-icon-wrapper-vertical">
               <fa-icon
@@ -114,7 +116,7 @@
             </div>
             <div class="jog-icon-wrapper-vertical-temp">
               <span>
-                {{ printerStatus.tool0.current }}<span>°C</span>
+                {{ printerStatus['tool' + toolID].current }}<span>°C</span>
               </span>
               <!--
               <span *ngIf="printerStatus.tool0.set">
@@ -133,9 +135,10 @@
               ></fa-icon>
             </div>
           </div>
-          <span class="control-middle-jog__heading">E</span>
+          <span class="control-middle-jog__heading">
+            E{{ toolID }}
+          </span>
         </div>
-
       </div>
     </div>
 

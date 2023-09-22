@@ -24,6 +24,7 @@ export class ControlComponent implements OnInit {
   public showExtruder = this.configService.getShowExtruderControl();
   public zOffset: number = 0.0;
   public zOffsetControl: boolean = false;
+  public tools: string[] = ['0'];
 
   public constructor(
     private printerService: PrinterService,
@@ -46,6 +47,11 @@ export class ControlComponent implements OnInit {
     this.subscriptions.add(
       this.socketService.getPrinterStatusSubscribable().subscribe((status: PrinterStatus): void => {
         this.printerStatus = status;
+        const tools: string[] = [];
+        for (let i = 0; status[`tool${i}`]; i++) {
+          tools.push(`${i}`);
+        }
+        this.tools = tools;
       }),
     );
     this.subscriptions.add(

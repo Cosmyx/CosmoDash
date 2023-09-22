@@ -79,6 +79,11 @@ export class OctoPrintSocketService implements SocketService {
         set: 0,
         unit: '°C',
       },
+      // tool1: {
+      //   current: 0,
+      //   set: 0,
+      //   unit: '°C',
+      // },
       chamber: {
         current: 0,
         set: 0,
@@ -220,6 +225,7 @@ export class OctoPrintSocketService implements SocketService {
   //==== Printer Status ====//
 
   public extractPrinterStatus(message: OctoprintSocketCurrent): void {
+    // console.log(message);
     if (message.current.temps[0]) {
       this.printerStatus.bed = {
         current: Math.round(message?.current?.temps[0]?.bed?.actual),
@@ -231,6 +237,15 @@ export class OctoPrintSocketService implements SocketService {
         set: Math.round(message?.current?.temps[0]?.tool0?.target),
         unit: '°C',
       };
+      if (message?.current?.temps[0]?.tool1) {
+        this.printerStatus.tool1 = {
+          current: Math.round(message?.current?.temps[0]?.tool1?.actual),
+          set: Math.round(message?.current?.temps[0]?.tool1?.target),
+          unit: '°C',
+        };
+      } else {
+        this.printerStatus.tool1 = null;
+      }
       this.printerStatus.chamber = {
         current: Math.round(message?.current?.temps[0]?.chamber?.actual),
         set: Math.round(message?.current?.temps[0]?.chamber?.target),
@@ -255,7 +270,7 @@ export class OctoPrintSocketService implements SocketService {
       } as OctoprintSocketEvent);
     }
     this.extractFanSpeedFromLogs(message?.current?.logs);
-    
+
     this.printerStatusSubject.next(this.printerStatus);
   }
 
@@ -268,7 +283,7 @@ export class OctoPrintSocketService implements SocketService {
     if (logs) {
       const fanSpeedRegex = /M106 S(\d+)/i;
       const fanSpeedLogs = logs.filter(l => fanSpeedRegex.test(l));
-      
+
       if (fanSpeedLogs && fanSpeedLogs.length > 0) {
         const fanSpeedLog = fanSpeedLogs[0];
         const fanSpeedResult = fanSpeedRegex.exec(fanSpeedLog);

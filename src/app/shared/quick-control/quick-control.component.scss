@@ -9,7 +9,25 @@
   transition: opacity 0.4s ease-in-out;
   z-index: 60;
   opacity: 1;
-
+  .top-bar__center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: visible;
+  }
+  .top-icon-container {
+    position: relative;
+    overflow: visible;
+    .target-info {
+      position: absolute;
+      top: -6px;
+      right: -3px;
+      color:#C23616;
+      font-weight: bold;
+      font-size: 4vh;
+    }
+  }
   &__controller {
     width: 35vw;
     margin: 0 auto;

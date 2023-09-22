@@ -14,6 +14,7 @@ import { SocketService } from '../services/socket/socket.service';
 export class PrinterStatusComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = new Subscription();
   public printerStatus: PrinterStatus;
+  public tools: string[];
   public fanSpeed: number;
   public status: string;
 
@@ -23,6 +24,7 @@ export class PrinterStatusComponent implements OnInit, OnDestroy {
 
   public QuickControlView = QuickControlView;
   public view = QuickControlView.NONE;
+  public targetInfo: string;
 
   public constructor(
     private printerService: PrinterService,
@@ -38,6 +40,11 @@ export class PrinterStatusComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.socketService.getPrinterStatusSubscribable().subscribe((status: PrinterStatus): void => {
         this.printerStatus = status;
+        const tools: string[] = [];
+        for (let i = 0; status[`tool${i}`]; i++) {
+          tools.push(`${i}`);
+        }
+        this.tools = tools;
       }),
     );
   }
@@ -61,8 +68,10 @@ export class PrinterStatusComponent implements OnInit, OnDestroy {
     }, 500);
   }
 
-  public showQuickControlHotend(): void {
+  public showQuickControlHotend(toolID: string): void {
     this.view = QuickControlView.HOTEND;
+    this.hotendTarget = this.printerStatus[`tool${toolID}`].set;
+    this.targetInfo = toolID;
     this.showQuickControl();
   }
 
@@ -93,13 +102,16 @@ export class PrinterStatusComponent implements OnInit, OnDestroy {
         image: 'nozzle.svg',
         target: this.hotendTarget,
         unit: '°C',
+        type: 'hotendTarget',
+        targetInfo: this.targetInfo,
+        showTargetInfo: this.tools.length > 1,
         changeValue: (value: number) => this.changeValue(
           'hotendTarget',
           value,
           this.configService.getDefaultHotendTemperature()
         ),
         setValue: () => {
-          this.printerService.setTemperatureHotend(this.hotendTarget);
+          this.printerService.setTemperatureHotend(this.hotendTarget, this.targetInfo);
           this.hideQuickControl();
         },
       },

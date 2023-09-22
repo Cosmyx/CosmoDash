@@ -90,6 +90,7 @@ interface OctoprintSocketTemperatures {
     bed: OctoprintSocketTemperature;
     chamber: OctoprintSocketTemperature;
     tool0: OctoprintSocketTemperature;
+    tool1: OctoprintSocketTemperature;
   };
 }
 

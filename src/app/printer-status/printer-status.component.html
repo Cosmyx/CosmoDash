@@ -1,21 +1,31 @@
-<table class="printer-status" *ngIf="printerStatus">
-  <tr>
-    <td
-      class="printer-status__value printer-status__value-1"
+<div class="printer-status" *ngIf="printerStatus">
+  <div class="printer-status-wrapper">
+    <div
+      class="printer-status__value printer-status__value-1 head-count-{{tools.length}}"
       [ngClass]="{ 'printer-status__no-set-value': printerStatus.tool0.set === 0 }"
-      (click)="showQuickControlHotend()"
-      matRipple
-      [matRippleUnbounded]="false"
     >
-      <img src="assets/nozzle.svg" />
-      <span class="printer-status__actual-value">
-        {{ printerStatus.tool0.current || 0 }}<span class="printer-status__unit">°C</span>
-      </span>
-      <span class="printer-status__set-value" *ngIf="printerStatus.tool0.set">
-        /{{ printerStatus.tool0.set }}<span class="unit">°C</span>
-      </span>
-    </td>
-    <td
+      <div
+        *ngFor="let toolID of tools"
+        (click)="showQuickControlHotend(toolID)"
+        matRipple
+        [matRippleUnbounded]="false"
+      >
+        <div class="image-container">
+          <img src="assets/nozzle.svg" />
+          <span *ngIf="tools.length > 1" class="toolId">{{toolID}}</span>
+        </div>
+        <div class="temperature-container">
+          <span class="printer-status__actual-value">
+            {{ printerStatus['tool' + toolID].current || 0 }}<span class="printer-status__unit">°C</span>
+          </span>
+          <span class="printer-status__set-value" *ngIf="printerStatus['tool' + toolID].set">
+            &nbsp;/ {{ printerStatus['tool' + toolID].set }}<span class="printer-status__unit">°C</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div
       class="printer-status__value printer-status__value-2"
       [ngClass]="{ 'printer-status__no-set-value': printerStatus.bed.set === 0 }"
       (click)="showQuickControlHeatbed()"
@@ -23,14 +33,17 @@
       [matRippleUnbounded]="false"
     >
       <img src="assets/heat-bed.svg" />
-      <span class="printer-status__actual-value">
-        {{ printerStatus.bed.current || 0 }}<span class="printer-status__unit">°C</span>
-      </span>
-      <span class="printer-status__set-value" *ngIf="printerStatus.bed.set">
-        /{{ printerStatus.bed.set }}<span class="unit">°C</span>
-      </span>
-    </td>
-    <td
+      <div class="temperature-container">
+        <span class="printer-status__actual-value">
+          {{ printerStatus.bed.current || 0 }}<span class="printer-status__unit">°C</span>
+        </span>
+        <span class="printer-status__set-value" *ngIf="printerStatus.bed.set">
+          /{{ printerStatus.bed.set }}<span class="printer-status__unit">°C</span>
+        </span>
+      </div>
+    </div>
+
+    <div
       class="printer-status__value printer-status__value-3 printer-status__no-set-value"
       (click)="showQuickControlFan()"
       matRipple
@@ -40,9 +53,9 @@
       <span class="printer-status__actual-value">
         {{ (printerStatus.fanSpeed > 0 ? printerStatus.fanSpeed : 0) | number: '1.0-0' }}<span class="printer-status__unit">%</span>
       </span>
-    </td>
-  </tr>
-</table>
+    </div>
+  </div>
+</div>
 
 <app-quick-control
   *ngIf="view !== QuickControlView.NONE"
