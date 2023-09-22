@@ -125,7 +125,7 @@ export const defaultConfig: Config = {
     touchscreen: true,
     turnScreenOffWhileSleeping: false,
     turnOnPrinterWhenExitingSleep: false,
-    preferPreviewWhilePrinting: false,
+    preferPreviewWhilePrinting: true,
     previewProgressCircle: false,
     screenSleepCommand: 'xset dpms force standby',
     screenWakeupCommand: 'xset s off && xset -dpms && xset s noblank',
