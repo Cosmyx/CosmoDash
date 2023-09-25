@@ -22,6 +22,10 @@
           "fr": {
             "translation": "src/locale/messages.fr.xlf",
             "baseHref": ""
+          },
+          "de": {
+            "translation": "src/locale/messages.de.xlf",
+            "baseHref": ""
           }
         }
       },
@@ -62,8 +66,11 @@
             "fr": {
               "localize": ["fr"]
             },
+            "de": {
+              "localize": ["de"]
+            },
             "production": {
-              "localize": ["en", "fr"],
+              "localize": ["en", "fr", "de"],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -100,6 +107,9 @@
           "configurations": {
             "fr": {
               "browserTarget": "OctoDash:build:fr"
+            },
+            "de": {
+              "browserTarget": "OctoDash:build:de"
             },
             "production": {
               "browserTarget": "OctoDash:build:production"
